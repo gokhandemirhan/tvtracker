@@ -14,9 +14,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Switch>
-         
           <Route path="/detail" component={Detail} />
-          <Route path="/" component={List} />
+          <Route exact path="/" component={List} />
         </Switch>
       </BrowserRouter>
     </div>
