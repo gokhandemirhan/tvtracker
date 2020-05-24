@@ -1,7 +1,7 @@
 import React from "react";
 import Searchbox from "./Searchbox";
 import Card from "./Card";
-
+import logo from '../images/logo.png';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">
-          <h1>TV Tracker</h1>
+          <img src={logo} />
         </Link>
 
         <a
