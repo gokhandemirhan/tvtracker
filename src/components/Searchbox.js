@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {connect} from "react-redux"
+import { getShows } from "../store/actions/showActions"
 
 class Searchbox extends React.Component {
   state = {
@@ -6,7 +8,7 @@ class Searchbox extends React.Component {
   };
   handleSubmit = (e) => {
       e.preventDefault();
-      this.props.handleSubmit(this.state.keyword)
+      this.props.getShows(this.state.keyword)
   }
   handleChange = (e) => {
     this.setState({'keyword':e.target.value})
@@ -29,4 +31,10 @@ class Searchbox extends React.Component {
   }
 }
 
-export default Searchbox;
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        getShows: (keyword) => dispatch(getShows(keyword))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Searchbox);

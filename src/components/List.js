@@ -1,54 +1,55 @@
 import React, { Component } from "react";
 import Searchbox from "./Searchbox";
 import Card from "./Card";
-import demoData from "./demo";
+import { connect } from "react-redux";
+
+//[[],[],[]]
 
 class List extends React.Component {
-  state = {
-    isLoaded: false,
-    shows: [],
-  };
-  handleSearch(keyword) {
-    console.log(keyword);
-    fetch("http://api.tvmaze.com/search/shows?q=" + keyword)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          this.setState({
-            isLoaded: true,
-            shows: result,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+  prepareData(acc, show, index, shows) {
+    const currentRow = acc.pop() || [];
+    currentRow.push(show);
+    acc.push(currentRow);
+    if (currentRow.length === 4) {
+      acc.push([]);
+    }
+    return acc;
   }
   render() {
-    const { shows } = this.state;
+    const { shows } = this.props;
+    const groupedShows = shows.reduce(this.prepareData, []);
+    console.log(groupedShows);
     return (
       <div className="container">
         <div className="columns">
           <div className="column is-full">
-            <Searchbox handleSubmit={this.handleSearch.bind(this)} />
+            <Searchbox />
           </div>
         </div>
-        <div className="columns">
-          {shows.map((tvShow, index) => {
-            return (
-              <div className="column" key={tvShow.show.id}>
-                <Card show={tvShow.show} />
-              </div>
-            );
-          })}
-        </div>
+
+        {groupedShows.map((group, index) => {
+          return (
+            <div className="columns" key={index}>
+              {group.map((show, index) => {
+                return (
+                  <div className="column" key={show.show.id}>
+                    <Card show={show.show} />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
     );
   }
 }
 
-export default List;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    shows: state.shows,
+  };
+};
+
+export default connect(mapStateToProps)(List);

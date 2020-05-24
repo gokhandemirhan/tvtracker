@@ -11,6 +11,9 @@ const Detail = (props) => {
       <div className="details__content">
           <p className="title is-1">{show.name}</p>
           <p className="subtitle is-3">{show.type}</p>
+          <p>
+            <div className="content" dangerouslySetInnerHTML={{__html: show.summary}} />
+          </p>
         </div>
     </div>
   );
