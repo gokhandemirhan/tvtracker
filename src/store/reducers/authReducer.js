@@ -1,5 +1,4 @@
 const initialState = {
-  auth: [],
   error: null,
 };
 
@@ -9,13 +8,27 @@ const authReducer = (state = initialState, action) => {
       console.log("AUTH_SUCCESS");
       return {
         ...state,
+        error: null,
       };
     case "LOGIN_ERROR":
       console.log("AUTH_ERROR");
       return {
         ...state,
+        error: "AUTH_ERROR",
       };
-      case "SIGNUP_SUCCESS":
+    case "LOGOUT_SUCCESS":
+      console.log("LOGOUT_SUCCESS");
+      return {
+        ...state,
+        error: null,
+      };
+    case "LOGOUT_ERROR":
+      console.log("LOGOUT_ERROR");
+      return {
+        ...state,
+        error: "AUTH_ERROR",
+      };
+    case "SIGNUP_SUCCESS":
       console.log("SIGNUP_SUCCESS");
       return {
         ...state,

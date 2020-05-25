@@ -2,9 +2,12 @@ import React from "react";
 import Searchbox from "./Searchbox";
 import Card from "./Card";
 import logo from '../images/logo.png';
+import {connect} from "react-redux"
 import { Link } from "react-router-dom";
+import { logOut } from "../store/actions/authActions"
 
-const Navbar = () => {
+const Navbar = (props) => {
+  
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -33,10 +36,17 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
+              {props.isLoggedIn ? (
+              <a onClick={props.logOut} to="/login" className="button is-light">Log out</a>
+              ):(
+              <div>
               <Link to="/signup" className="button is-primary">
                 <strong>Sign up</strong>
               </Link>
               <Link to="/login" className="button is-light">Log in</Link>
+              </div>
+              ) }
+              
             </div>
           </div>
         </div>
@@ -45,4 +55,17 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToPros = (state) => {
+  console.log(state)
+  return {
+    isLoggedIn:state.firebase.auth.uid
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+      logOut: () => dispatch(logOut())
+  }
+}
+
+export default connect(mapStateToPros,mapDispatchToProps)(Navbar);
