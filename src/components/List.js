@@ -48,7 +48,7 @@ class List extends React.Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    shows: state.shows,
+    shows: state.show.shows,
   };
 };
 

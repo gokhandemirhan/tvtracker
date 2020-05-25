@@ -10,13 +10,13 @@ const Detail = (props) => {
         <div className="column is-two-fifths">
           <div className="content is-medium">
             <h1>{show.name}</h1>
-            {scores.map((score) => {
+            {scores.map((score,index) => {
               return (
-                <span class="icon has-text-info">
+                <span className="icon has-text-info" key={index}>
                   {adjustedRating > score ? (
-                    <i class="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
                   ) : (
-                    <i class="far fa-star"></i>
+                    <i className="far fa-star"></i>
                   )}
                 </span>
               );
@@ -25,8 +25,8 @@ const Detail = (props) => {
             <div dangerouslySetInnerHTML={{ __html: show.summary }} />
             <ul>
               {show.genres &&
-                show.genres.map((genre) => {
-                  return <li>{genre}</li>;
+                show.genres.map((genre,index) => {
+                  return <li key={index}>{genre}</li>;
                 })}
             </ul>
             <div className="buttons">

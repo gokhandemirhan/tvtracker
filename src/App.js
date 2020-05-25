@@ -7,6 +7,8 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import List from "./components/List";
 import Navbar from "./components/Navbar";
 import Detail from "./components/Detail";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/detail" component={Detail} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
           <Route exact path="/" component={List} />
         </Switch>
       </BrowserRouter>
