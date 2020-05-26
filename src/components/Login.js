@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logIn } from "../store/actions/authActions";
 
+import { Redirect } from "react-router-dom";
+
 class Login extends Component {
   state = {
     password: "",
@@ -16,9 +18,12 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
   render() {
+    if(this.props.isLoggedIn) return <Redirect to='/' />
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <div className="columns">
+          <div className="column">
+          <form onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Email</label>
             <div className="control">
@@ -51,10 +56,31 @@ class Login extends Component {
             </div>
           </div>
         </form>
+          </div>
+          <div className="column is-half">
+            {this.props.error && (
+              <article className="message is-danger">
+                <div className="message-header">
+                  <p>Error</p>
+                  <button className="delete" aria-label="delete"></button>
+                </div>
+                <div className="message-body">{this.props.error.message}</div>
+              </article>
+            )}
+          </div>
+        </div>
+        
       </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    isLoggedIn: state.firebase.auth.uid,
+    error: state.auth.error
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -62,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

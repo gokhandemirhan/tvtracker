@@ -1,13 +1,12 @@
 import React from "react";
 import Searchbox from "./Searchbox";
 import Card from "./Card";
-import logo from '../images/logo.png';
-import {connect} from "react-redux"
+import logo from "../images/logo.png";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logOut } from "../store/actions/authActions"
+import { logOut } from "../store/actions/authActions";
 
 const Navbar = (props) => {
-  
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -29,24 +28,34 @@ const Navbar = (props) => {
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-         
-        </div>
+        <div className="navbar-start"></div>
 
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
               {props.isLoggedIn ? (
-              <a onClick={props.logOut} to="/login" className="button is-light">Log out</a>
-              ):(
-              <div>
-              <Link to="/signup" className="button is-primary">
-                <strong>Sign up</strong>
-              </Link>
-              <Link to="/login" className="button is-light">Log in</Link>
-              </div>
-              ) }
-              
+                <div>
+                  <Link to="/profile" className="button is-primary">
+                    <strong>Profile</strong>
+                  </Link>
+                  <a
+                    onClick={props.logOut}
+                    to="/login"
+                    className="button is-light"
+                  >
+                    Log out
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <Link to="/signup" className="button is-primary">
+                    <strong>Sign up</strong>
+                  </Link>
+                  <Link to="/login" className="button is-light">
+                    Log in
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -55,17 +64,17 @@ const Navbar = (props) => {
   );
 };
 
-const mapStateToPros = (state) => {
-  console.log(state)
+const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    isLoggedIn:state.firebase.auth.uid
-  }
-}
+    isLoggedIn: state.firebase.auth.uid,
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
-      logOut: () => dispatch(logOut())
-  }
-}
+    logOut: () => dispatch(logOut()),
+  };
+};
 
-export default connect(mapStateToPros,mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

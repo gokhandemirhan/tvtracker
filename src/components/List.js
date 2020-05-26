@@ -23,6 +23,21 @@ class List extends React.Component {
       <div className="container">
         <div className="columns">
           <div className="column is-full">
+            <section className="hero is-medium">
+              <div className="hero-body">
+                <div className="container">
+                  <h1 className="title">TV Tracker</h1>
+                  <h2 className="subtitle">
+                    Add your favorite TV Shows to your list! Sign up to get
+                    started.
+                  </h2>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column is-full">
             <Searchbox />
           </div>
         </div>

@@ -9,3 +9,4 @@
 * Redirect when logged/signed in
 * Guard routes
 * Animate detail page
+* Save user search

@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Detail from "./components/Detail";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/detail" component={Detail} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
           <Route exact path="/" component={List} />
         </Switch>
       </BrowserRouter>
