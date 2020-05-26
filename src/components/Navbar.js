@@ -36,7 +36,7 @@ const Navbar = (props) => {
               {props.isLoggedIn ? (
                 <div>
                   <Link to="/profile" className="button is-primary">
-                    <strong>Profile</strong>
+                    <strong>{props.profile.firstName}</strong>
                   </Link>
                   <a
                     onClick={props.logOut}
@@ -68,6 +68,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     isLoggedIn: state.firebase.auth.uid,
+    profile: state.firebase.profile,
   };
 };
 

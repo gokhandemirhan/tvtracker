@@ -1,21 +1,34 @@
 const initialState = {
-  shows:[],
-  error:null
-}
+  shows: [],
+  error: null,
+};
 
-const showReducer = (state=initialState, action) => {
+const showReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SHOWS_LOADED":
-        console.log("SHOWS_LOADED", action.shows)
+      console.log("SHOWS_LOADED", action.shows);
       return {
         ...state,
-        shows:action.shows
+        error:null,
+        shows: action.shows,
       };
-      case "SHOWS_ERROR":
-        console.log("SHOWS_ERROR")
+    case "SHOWS_ERROR":
+      console.log("SHOWS_ERROR");
       return {
         ...state,
-        error:action.error
+        error: action.error,
+      };
+    case "SAVE_SHOW_SUCCESS":
+      console.log("SAVE_SHOW");
+      return {
+        ...state,
+        error: null,
+      };
+    case "SAVE_SHOW_ERROR":
+      console.log("SAVE_SHOW_ERROR");
+      return {
+        ...state,
+        error: action.error,
       };
     default:
       return state;

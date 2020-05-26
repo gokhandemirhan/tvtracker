@@ -1,4 +1,5 @@
 import React from "react";
+import AddToLists from "./AddToLists";
 
 const Detail = (props) => {
   const { show } = props.location;
@@ -33,6 +34,10 @@ const Detail = (props) => {
               <a className="button is-primary" target="_blank" href={show.url}>On TVMaze.com</a>
               <a className="button is-link" target="_blank" href={show.officialSite}>Official site</a>
             </div>
+
+          {/* User specific buttons*/}
+            <AddToLists show={show}/>
+
           </div>
         </div>
         <div className="column">

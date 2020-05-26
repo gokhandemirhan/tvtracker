@@ -10,3 +10,6 @@
 * Guard routes
 * Animate detail page
 * Save user search
+* Flash of non logged in content
+* Change state of I want to watch button if show is already in the list
+* Make profile photo feature
