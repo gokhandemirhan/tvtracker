@@ -1,6 +1,7 @@
 const initialState = {
   shows: [],
   error: null,
+  showAdded:false
 };
 
 const showReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ const showReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
+        showAdded:true
       };
     case "SAVE_SHOW_ERROR":
       console.log("SAVE_SHOW_ERROR");

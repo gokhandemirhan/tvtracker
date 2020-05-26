@@ -13,3 +13,5 @@
 * Flash of non logged in content
 * Change state of I want to watch button if show is already in the list
 * Make profile photo feature
+* Make reducer for watchlist
+* Added to watchlist notification

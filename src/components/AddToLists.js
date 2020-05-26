@@ -8,10 +8,18 @@ class Detail extends Component {
   };
   render() {
     return (
-      <div className="buttons">
-        <a className="button is-danger" onClick={this.handleClick}>
-          I want to watch this
-        </a>
+      <div>
+        <div className="buttons">
+          <a className="button is-danger" onClick={this.handleClick}>
+            I want to watch this
+          </a>
+        </div>
+        {this.props.showAdded && (
+          <div className="notification">
+            <button className="delete"></button>
+            Show added to your watch list
+          </div>
+        )}
       </div>
     );
   }
@@ -21,4 +29,10 @@ const mapDispatchToProps = (dispatch) => {
     saveShow: (showId) => dispatch(saveShow(showId)),
   };
 };
-export default connect(null, mapDispatchToProps)(Detail);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    showAdded: state.show.showAdded,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);
