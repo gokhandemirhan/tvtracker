@@ -1,5 +1,8 @@
 ## TV Tracker
 
+## Demo
+https://vibrant-edison-cffbc7.netlify.app/
+
 ## Todos
 * Make CSS file for each component folder
 * Fix rating star algoritm

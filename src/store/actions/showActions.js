@@ -1,6 +1,6 @@
 export const getShows = (keyword) => {
   return (dispatch, getState) => {
-    fetch("http://api.tvmaze.com/search/shows?q=" + keyword)
+    fetch("https://api.tvmaze.com/search/shows?q=" + keyword)
       .then((res) => res.json())
       .then(
         (result) => {
