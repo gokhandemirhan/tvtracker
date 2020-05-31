@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
   return {
     showAdded: state.show.showAdded,
     isLoggedIn: state.firebase.auth.uid,
-    watchlist: state.firebase.profile.watchlist,
+    watchlist: state.firebase.profile.watchlist || [],
   };
 };
 
