@@ -3,8 +3,6 @@ import AddToLists from "./AddToLists";
 
 const Detail = (props) => {
   const { show } = props.location;
-  const scores = [1, 2, 3, 4, 5];
-  const adjustedRating = show.rating.average / 2;
   return (
     <section className="text-gray-700 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">

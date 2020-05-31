@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import List from "./components/List";
 import Navbar from "./components/Navbar";
@@ -17,14 +18,22 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <Switch>
-          <Route path="/detail" component={Detail} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/search" component={List} />
-          <Route exact path="/" component={Home} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup component={null}>
+              <CSSTransition key={location.key} timeout={300} classNames="fade">
+                <Switch location={location}>
+                  <Route path="/detail" component={Detail} />
+                  <Route path="/signup" component={Signup} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/search" component={List} />
+                  <Route exact path="/" component={Home} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </BrowserRouter>
     </div>
   );
