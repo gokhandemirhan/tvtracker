@@ -10,6 +10,7 @@ import Detail from "./components/Detail";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
-          <Route exact path="/" component={List} />
+          <Route path="/search" component={List} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </div>

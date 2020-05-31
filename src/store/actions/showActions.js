@@ -37,6 +37,7 @@ export const saveShow = (show) => {
         (result) => {
           dispatch({
             type: "SAVE_SHOW_SUCCESS",
+            show
           });
         },
         (error) => {

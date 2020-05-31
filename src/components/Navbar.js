@@ -8,59 +8,79 @@ import { logOut } from "../store/actions/authActions";
 
 const Navbar = (props) => {
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <Link className="navbar-item" to="/">
-          <img src={logo} />
-        </Link>
-
-        <a
-          role="button"
-          className="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+    <header className="text-gray-700 body-font">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span className="ml-3 text-xl">TV TRACKER</span>
         </a>
-      </div>
-
-      <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start"></div>
-
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              {props.isLoggedIn ? (
-                <div>
-                  <Link to="/profile" className="button is-primary">
-                    <strong>{props.profile.firstName}</strong>
-                  </Link>
-                  <a
-                    onClick={props.logOut}
-                    to="/login"
-                    className="button is-light"
-                  >
-                    Log out
-                  </a>
-                </div>
-              ) : (
-                <div>
-                  <Link to="/signup" className="button is-primary">
-                    <strong>Sign up</strong>
-                  </Link>
-                  <Link to="/login" className="button is-light">
-                    Log in
-                  </Link>
-                </div>
-              )}
-            </div>
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <Link to="/" className="mr-5 hover:text-gray-900">Homepage</Link>
+          <Link to="/search" className="mr-5 hover:text-gray-900">Search</Link>
+          <Link to="/profile" className="mr-5 hover:text-gray-900">Profile</Link>
+        </nav>
+        {props.isLoggedIn ? (
+          <button 
+          onClick={props.logOut}
+          className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">
+            Logout
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="w-4 h-4 ml-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        ) : (
+          <div>
+            <Link to="/login" className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">
+              Login
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </Link>
+            <Link to="/signup" className="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">
+              Signup
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </Link>
           </div>
-        </div>
+        )}
       </div>
-    </nav>
+    </header>
   );
 };
 

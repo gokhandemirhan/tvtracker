@@ -20,42 +20,32 @@ class List extends React.Component {
     const groupedShows = shows.reduce(this.prepareData, []);
     console.log(groupedShows);
     return (
-      <div className="container">
-        <div className="columns">
-          <div className="column is-full">
-            <section className="hero is-medium">
-              <div className="hero-body">
-                <div className="container">
-                  <h1 className="title">TV Tracker</h1>
-                  <h2 className="subtitle">
-                    Add your favorite TV Shows to your list! Sign up to get
-                    started.
-                  </h2>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-        <div className="columns">
-          <div className="column is-full">
-            <Searchbox />
-          </div>
-        </div>
-
-        {groupedShows.map((group, index) => {
-          return (
-            <div className="columns" key={index}>
-              {group.map((show, index) => {
-                return (
-                  <div className="column" key={show.show.id}>
-                    <Card show={show.show} />
-                  </div>
-                );
-              })}
+      <section className="text-gray-700 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap w-full mb-20">
+            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+                Pitchfork Kickstarter Taxidermy
+              </h1>
+              <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-          );
-        })}
-      </div>
+            <p className="lg:w-1/2 w-full leading-relaxed text-base">
+              <Searchbox />
+              
+            </p>
+          </div>
+
+          {groupedShows.map((group, index) => {
+            return (
+              <div className="flex flex-wrap -m-4" key={index}>
+                {group.map((show, index) => {
+                  return <Card show={show.show} />;
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </section>
     );
   }
 }
