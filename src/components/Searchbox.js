@@ -10,7 +10,7 @@ class Searchbox extends React.Component {
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let keyword = params.get("keyword");
-    if (keyword !== "") {
+    if (keyword && keyword !== "") {
       this.setState({keyword});
       this.props.getShows(keyword);
     }
@@ -26,7 +26,7 @@ class Searchbox extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="field has-addons">
-          <div className="control">
+          <div className="control long-searchbar">
             <input
               className="input"
               type="text"

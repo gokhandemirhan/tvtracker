@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { saveShow } from "../store/actions/showActions";
 import { Link } from "react-router-dom";
 
-class Detail extends Component {
+class AddRemoveList extends Component {
   handleClick = () => {
-    this.props.saveShow({ id: this.props.show.id, name: this.props.show.name });
+    const show = this.props.show;
+    console.log(this.props)
+    const isShowExists = this.props.watchlist.find((s) => s.id === show.id) ? 1 : 0;
+    this.props.saveShow({ id: show.id, name: show.name }, !isShowExists);
   };
   render() {
     const show = this.props.show;
-    const isShowExists = this.props.watchlist.find((s) => s.id === show.id);
+    const isShowExists = this.props.watchlist.find((s) => s.id === show.id) ? 1 : 0;
     if (!this.props.isLoggedIn) {
       return <Link to="/login">Login to add this show to your watchlist</Link>;
     }
@@ -41,7 +44,7 @@ class Detail extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveShow: (showId) => dispatch(saveShow(showId)),
+    saveShow: (show,isAdd) => dispatch(saveShow(show,isAdd)),
   };
 };
 
@@ -54,4 +57,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);
+export default connect(mapStateToProps, mapDispatchToProps)(AddRemoveList);

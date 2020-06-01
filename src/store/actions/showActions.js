@@ -20,24 +20,30 @@ export const getShows = (keyword) => {
   };
 };
 
-export const saveShow = (show) => {
+export const saveShow = (show,isAdd) => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const firestore = getFirestore();
     const firebase = getFirebase();
     const state = getState();
     const userId = state.firebase.auth.uid;
-    console.log(show.id)
+    console.log(show.id);
+
+    let editType = firebase.firestore.FieldValue.arrayUnion(show)
+    if(!isAdd){
+      editType = firebase.firestore.FieldValue.arrayRemove(show)
+    }
+
     firestore
       .collection("users")
       .doc(userId)
       .update({
-        watchlist: firebase.firestore.FieldValue.arrayUnion(show),
+        watchlist: editType,
       })
       .then(
         (result) => {
           dispatch({
             type: "SAVE_SHOW_SUCCESS",
-            show
+            show,
           });
         },
         (error) => {
@@ -47,5 +53,14 @@ export const saveShow = (show) => {
           });
         }
       );
+  };
+};
+
+export const setCurrentShow = (show) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "SET_CURRENT_SHOW",
+      show: show,
+    });
   };
 };

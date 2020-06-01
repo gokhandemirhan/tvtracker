@@ -3,7 +3,7 @@ import Searchbox from "./Searchbox";
 import Card from "./Card";
 import { connect } from "react-redux";
 
-//[[],[],[]]
+import { setCurrentShow } from "../store/actions/showActions";
 
 class List extends React.Component {
   prepareData(acc, show, index, shows) {
@@ -15,23 +15,25 @@ class List extends React.Component {
     }
     return acc;
   }
+  handleClickCard = (show) => {
+    
+    this.props.setCurrentShow(show);
+  }
   render() {
-    const { shows } = this.props;
+    const { shows, setCurrentShow } = this.props;
     const groupedShows = shows.reduce(this.prepareData, []);
-    console.log(groupedShows);
     return (
       <section className="text-gray-700 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                Pitchfork Kickstarter Taxidermy
+                Find your favourite show.
               </h1>
               <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-base">
               <Searchbox />
-              
             </p>
           </div>
 
@@ -39,7 +41,7 @@ class List extends React.Component {
             return (
               <div className="flex flex-wrap -m-4" key={index}>
                 {group.map((show, index) => {
-                  return <Card show={show.show} />;
+                  return <Card show={show.show} handleClick={()=>this.handleClickCard(show.show)} />;
                 })}
               </div>
             );
@@ -57,4 +59,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(List);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentShow: (show) => dispatch(setCurrentShow(show)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

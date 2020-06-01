@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ show }) => {
+const Card = ({ show,handleClick }) => {
   return (
-    <div className="xl:w-1/4 md:w-1/2 p-4">
+    <div className="xl:w-1/4 md:w-1/2 p-4" onClick={handleClick}>
       <Link to={{ pathname: `/detail/${show.id}`, show: show }}>
         <div className="bg-gray-100 p-6 rounded-lg">
           <img
@@ -18,8 +18,7 @@ const Card = ({ show }) => {
             {show.name}
           </h2>
           <p className="leading-relaxed text-base">
-            Fingerstache flexitarian street art 8-bit waistcoat. Distillery
-            hexagon disrupt edison bulbche.
+           
           </p>
         </div>
       </Link>
